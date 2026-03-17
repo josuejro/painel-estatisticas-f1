@@ -1,0 +1,13 @@
+# Banco de dados
+f1.db
+
+# Variáveis de ambiente
+.env
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Ambientes virtuais
+venv/
+.venv/
