@@ -188,11 +188,11 @@ def listar_sessoes():
         print('Nenhuma sessão no banco. Use a opção 1 para atualizar.')
         return
     
-    print('KEY  | PAÍS          | CIRCUITO   | TIPO        | DATA')
-    print('-----+---------------+------------+-------------+----------')
+    print(f'{"KEY".ljust(5)} | {"PAÍS".ljust(15)} | {"CIRCUITO".ljust(20)} | {"TIPO".ljust(12)} | DATA')
+    print(f'{"-"*5}-+-{"-"*15}-+-{"-"*20}-+-{"-"*12}-+-{"-"*25}')
     
     for session_key, nome, tipo, data, pais, circuito in resultado:
-        print(f'{session_key} | {pais} | {circuito} | {tipo} | {data}')
+        print(f'{str(session_key).ljust(5)} | {pais.ljust(15)} | {circuito.ljust(20)} | {tipo.ljust(12)} | {data}')
 
 def ver_resultado(session_key):
     db = sqlite3.connect('f1.db')
@@ -218,11 +218,14 @@ def ver_resultado(session_key):
 
     db.close()
 
-    print(f'Resultado: {nome_sessao}  | {pais}         | {data}')
-    print('--------------------------+----------------+-------------')
+    data_formatada = data[:10]
+    print(f'Resultado: {nome_sessao.ljust(20)} | {pais.ljust(15)} | {data_formatada}')
+
+    print(f'{"POS".ljust(4)} | {"SIGLA".ljust(6)} | {"NOME COMPLETO".ljust(25)} | EQUIPE')
+    print(f'{"-"*4}-+-{"-"*6}-+-{"-"*25}-+-{"-"*20}')
 
     for posicao, nome_completo, sigla, equipe in resultado:
-        print(f'{posicao}º | {sigla} | {nome_completo} | {equipe}')
+        print(f'{(str(posicao) + "º").ljust(4)} | {sigla.ljust(6)} | {nome_completo.ljust(25)} | {equipe}')
 
 def ver_piloto():
     db = sqlite3.connect('f1.db')
@@ -235,11 +238,11 @@ def ver_piloto():
         print('Nenhum piloto no banco. Use a opção 1 para atualizar.')
         return
     
-    print('N°   | SIGLA         | NOME COMPLETO            | EQUIPE')
-    print('-----+---------------+--------------------------+-------------')
+    print(f'{"Nº".ljust(4)} | {"SIGLA".ljust(6)} | {"NOME COMPLETO".ljust(25)} | EQUIPE')
+    print(f'{"-"*4}-+-{"-"*6}-+-{"-"*25}-+-{"-"*20}')
 
     for numero, sigla, nome_completo, equipe in resultado:
-        print(f'{numero} | {sigla} | {nome_completo} | {equipe}')
+        print(f'{str(numero).ljust(4)} | {sigla.ljust(6)} | {nome_completo.ljust(25)} | {equipe}')
 
 def menu_principal():
     while True:
